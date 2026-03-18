@@ -9,6 +9,7 @@ todos = [
     {"id": 3, "task": "Deploy to Azure"},
     {"id": 4, "task": "Celebrate!"},
     {"id": 5, "task": "Write documentation"},
+    {"id": 6, "task": "Demonstrate to team"},
 ]
 
 @app.route(route="MyHttpTrigger", auth_level=func.AuthLevel.ANONYMOUS)
