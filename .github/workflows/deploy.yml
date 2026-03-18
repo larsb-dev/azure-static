@@ -46,6 +46,7 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # used for PRs and comments
           action: "upload"
+          production_branch: "main" # force production branch mapping
           app_location: "dist"     # deploy prebuilt Vite artifact directly
           skip_app_build: true     # already built above
           # output_location: ""      # no additional build output path when skip_app_build is true
