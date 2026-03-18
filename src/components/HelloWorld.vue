@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { onMounted } from 'vue'
+import { APP_ENV } from '../env'
 
 const todos = ref([])
 const isLoading = ref(true)
@@ -21,7 +22,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <h1>Your Todos</h1>
+  <h1>Your Todos at {{ APP_ENV ?? 'Unknown' }}</h1>
   <div v-if="isLoading" class="loading-state" role="status" aria-live="polite">
     <span class="spinner" aria-hidden="true"></span>
     <span>Loading todos...</span>

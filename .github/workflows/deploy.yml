@@ -51,3 +51,4 @@ jobs:
           skip_app_build: true     # already built above
           # output_location: ""      # no additional build output path when skip_app_build is true
           api_location: "api"      # Azure Function folder
+          deployment_environment: "Development" # set environment for non-production branches
