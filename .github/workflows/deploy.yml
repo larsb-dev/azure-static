@@ -21,13 +21,13 @@ jobs:
         with:
           node-version: '24'
 
-      # Install dependencies and build Vue frontend
-      - name: Install & Build Vue App
-        run: |
-          npm install
-          npm run build
-        env:
-          VITE_APP_ENVIRONMENT: "Development"
+      # # Install dependencies and build Vue frontend
+      # - name: Install & Build Vue App
+      #   run: |
+      #     npm install
+      #     npm run build
+      #   env:
+      #     VITE_APP_ENVIRONMENT: "Development"
 
       # Setup Python for Azure Functions API
       - name: Setup Python
@@ -50,7 +50,7 @@ jobs:
           action: "upload"
           production_branch: "main" # force production branch mapping
           app_location: "dist"     # deploy prebuilt Vite artifact directly
-          skip_app_build: true     # already built above
+          # skip_app_build: true     # already built above
           # output_location: ""      # no additional build output path when skip_app_build is true
           api_location: "api"      # Azure Function folder
           deployment_environment: "Development" # set environment for non-production branches
