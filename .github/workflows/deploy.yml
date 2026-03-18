@@ -49,8 +49,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }} # used for PRs and comments
           action: "upload"
           production_branch: "main" # force production branch mapping
-          app_location: "dist"     # deploy prebuilt Vite artifact directly
-          # skip_app_build: true     # already built above
-          # output_location: ""      # no additional build output path when skip_app_build is true
+          app_location: "."     # repo root for app source when Oryx builds
+          output_location: "dist" # Vite build artifact directory
           api_location: "api"      # Azure Function folder
           deployment_environment: "Development" # set environment for non-production branches
