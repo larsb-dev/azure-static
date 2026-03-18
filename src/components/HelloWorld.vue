@@ -5,18 +5,21 @@ import { APP_ENV } from '../env'
 
 const todos = ref([])
 const isLoading = ref(true)
-// const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+const loadTodos = async () => {
+    try {
+      isLoading.value = true
+      const response = await fetch('/api/MyHttpTrigger')
+      todos.value = await response.json()
+    } catch (error) {
+      console.error('Failed to fetch todos:', error)
+    } finally {
+      isLoading.value = false
+    }
+}
 
 onMounted(async () => {
-  try {
-    // await delay(500)
-    const response = await fetch('/api/MyHttpTrigger')
-    todos.value = await response.json()
-  } catch (error) {
-    console.error('Failed to fetch todos:', error)
-  } finally {
-    isLoading.value = false
-  }
+  await loadTodos()
 })
 
 </script>
@@ -28,11 +31,15 @@ onMounted(async () => {
     <span>Loading todos...</span>
   </div>
 
-  <ul v-else>
-    <li v-for="todo in todos" :key="todo.id">
-      {{ todo.task }}
-    </li>
-  </ul>
+  <div v-else>
+    <ul>
+      <li v-for="todo in todos" :key="todo.id">
+        {{ todo.task }}
+      </li>
+    </ul>
+    <button @click="loadTodos">Refresh Todos</button>
+  </div>
+
 </template>
 
 <style scoped>
