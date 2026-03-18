@@ -26,6 +26,8 @@ jobs:
         run: |
           npm install
           npm run build
+        env:
+          VITE_APP_ENVIRONMENT: "Development"
 
       # Setup Python for Azure Functions API
       - name: Setup Python
