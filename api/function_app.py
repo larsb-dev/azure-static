@@ -12,7 +12,7 @@ todos = [
     {"id": 6, "task": "Demonstrate to team"},
 ]
 
-@app.route(route="MyHttpTrigger", auth_level=func.AuthLevel.ANONYMOUS)
+@app.route(route="MyHttpTrigger", auth_level=func.AuthLevel.ANONYMOUS, methods=["GET"])
 def main(req: func.HttpRequest) -> func.HttpResponse:
     return func.HttpResponse(
         json.dumps(todos),
