@@ -7,7 +7,8 @@ todos = [
     {"id": 1, "task": "Learn Azure Functions with Python"},
     {"id": 2, "task": "Build Vue frontend"},
     {"id": 3, "task": "Deploy to Azure"},
-    {"id": 4, "task": "Celebrate!"}
+    {"id": 4, "task": "Celebrate!"},
+    {"id": 5, "task": "Write documentation"},
 ]
 
 @app.route(route="MyHttpTrigger", auth_level=func.AuthLevel.ANONYMOUS)
