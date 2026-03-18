@@ -13,7 +13,7 @@ jobs:
     name: Build and Deploy Job
     steps:
       # Checkout the repo
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       # Setup Node.js for Vue build
       - name: Setup Node.js
@@ -21,13 +21,13 @@ jobs:
         with:
           node-version: '24'
 
-      # # Install dependencies and build Vue frontend
-      # - name: Install & Build Vue App
-      #   run: |
-      #     npm install
-      #     npm run build
-      #   env:
-      #     VITE_APP_ENVIRONMENT: "Development"
+      # Install dependencies and build Vue frontend
+      - name: Install & Build Vue App
+        run: |
+          npm install
+          npm run build
+        env:
+          VITE_APP_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && secrets.APP_ENVIRONMENT_PRODUCTION || secrets.APP_ENVIRONMENT_DEVELOPMENT }}
 
       # Setup Python for Azure Functions API
       - name: Setup Python
@@ -49,7 +49,17 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }} # used for PRs and comments
           action: "upload"
           production_branch: "main" # force production branch mapping
-          app_location: "."     # repo root for app source when Oryx builds
-          output_location: "dist" # Vite build artifact directory
+          app_location: "dist"     # deploy prebuilt Vite artifact directly
+          skip_app_build: true     # already built above
           api_location: "api"      # Azure Function folder
-          deployment_environment: "Development" # set environment for non-production branches
+
+        # Alternative deployment step if you want Azure to build the app using Oryx
+        # with:
+        #   azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+        #   repo_token: ${{ secrets.GITHUB_TOKEN }} # used for PRs and comments
+        #   action: "upload"
+        #   production_branch: "main" # force production branch mapping
+        #   app_location: "."     # repo root for app source when Oryx builds
+        #   output_location: "dist" # Vite build artifact directory
+        #   api_location: "api"      # Azure Function folder
+        #   deployment_environment: "Development" # set environment for non-production branches
