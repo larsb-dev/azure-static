@@ -27,6 +27,11 @@ jobs:
           npm install
           npm run build
 
+      - name: Debug dist folder
+        run: |
+          echo "Listing dist folder:"
+          ls -la dist
+
       # Setup Python for Azure Functions API
       - name: Setup Python
         uses: actions/setup-python@v4
