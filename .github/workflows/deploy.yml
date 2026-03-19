@@ -52,11 +52,7 @@ jobs:
           app_location: "dist"     # deploy prebuilt Vite artifact directly
           skip_app_build: true     # already built above
           api_location: "api"      # Azure Function folder
-<<<<<<< HEAD
-          deployment_environment: "Development" # set environment for non-production branches
-=======
->>>>>>> main
-
+          
         # Alternative deployment step if you want Azure to build the app using Oryx
         # with:
         #   azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
