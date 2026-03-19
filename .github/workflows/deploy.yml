@@ -13,7 +13,7 @@ jobs:
     name: Build and Deploy Job
     steps:
       # Checkout the repo
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       # Setup Node.js for Vue build
       - name: Setup Node.js
@@ -52,7 +52,10 @@ jobs:
           app_location: "dist"     # deploy prebuilt Vite artifact directly
           skip_app_build: true     # already built above
           api_location: "api"      # Azure Function folder
+<<<<<<< HEAD
           deployment_environment: "Development" # set environment for non-production branches
+=======
+>>>>>>> main
 
         # Alternative deployment step if you want Azure to build the app using Oryx
         # with:
